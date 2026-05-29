@@ -36,7 +36,7 @@ jQuery.fn.loadGists = function(username) {
   this.html("<span>Querying GitHub for gists...</span>");
  
   var target = this; 
-  $.githubUser(username, function(data) {
+  $.githubUserGists(username, function(data) {
     var gists = data;
     sortByNumberOfWatchers(gists);
  
