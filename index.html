@@ -12,7 +12,8 @@
   <script src="script/github.js"></script>
   <script>
    $(function() {
-    $("#github-projects").loadRepositories("lukaszjablonski");
+    $("#repositories").loadRepositories("lukaszjablonski");
+    $("#gists").loadRepositories("lukaszjablonski");
    });
   </script>
  </head>
@@ -27,7 +28,12 @@
   
   <section>
    <h1>Repositories</h1>
-   <div id="github-projects" class="inner"><a href="https://github.com/lukaszjablonski/">My GitHub profile</a></div>
+   <div id="repositories" class="inner"><a href="https://github.com/lukaszjablonski/">My GitHub Profile</a></div>
+  </section>
+
+  <section>
+   <h1>Gists</h1>
+   <div id="gists" class="inner"><a href="https://gist.github.com/lukaszjablonski">My GitHib Giists</a></div>
   </section>
   
   <footer>
