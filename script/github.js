@@ -2,11 +2,6 @@ jQuery.githubUser = function(username, callback) {
   //jQuery.getJSON("http://github.com/api/v1/json/" + username + "?callback=?", callback);
   jQuery.getJSON("https://api.github.com/users/" + username + "/repos", callback);
 }
-
-jQuery.githubUserGists = function(username, callback) {
-  //jQuery.getJSON("http://github.com/api/v1/json/" + username + "?callback=?", callback);
-  jQuery.getJSON("https://api.github.com/users/" + username + "/gists", callback);
-}
  
 jQuery.fn.loadRepositories = function(username) {
   this.html("<span>Querying GitHub for repositories...</span>");
@@ -23,8 +18,21 @@ jQuery.fn.loadRepositories = function(username) {
       list.append('<dd>' + this.description + '</dd>');
     });
   });
+ 
+  function sortByNumberOfWatchers(repos) {
+    repos.sort(function(a,b) {
+      return b.watchers - a.watchers;
+    });
+  }
+};
 
-  jQuery.fn.loadGists = function(username) {
+
+jQuery.githubUserGists = function(username, callback) {
+  //jQuery.getJSON("http://github.com/api/v1/json/" + username + "?callback=?", callback);
+  jQuery.getJSON("https://api.github.com/users/" + username + "/gists", callback);
+}
+
+jQuery.fn.loadGists = function(username) {
   this.html("<span>Querying GitHub for gists...</span>");
  
   var target = this; 
@@ -40,8 +48,8 @@ jQuery.fn.loadRepositories = function(username) {
     });
   });
  
-  function sortByNumberOfWatchers(repos) {
-    repos.sort(function(a,b) {
+  function sortByNumberOfWatchers(gists) {
+    gists.sort(function(a,b) {
       return b.watchers - a.watchers;
     });
   }
