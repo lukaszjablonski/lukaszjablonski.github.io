@@ -41,7 +41,8 @@ jQuery.fn.loadGists = function(username) {
     sortByNumberOfWatchers(gists);
  
     var list = $('<dl/>');
-    target.empty().append(list);
+    //target.empty().append(list);
+    target.append(list);
     $(gists).each(function() {
       list.append('<dt><a href="'+ this.svn_url +'">' + this.name + '</a></dt>');
       list.append('<dd>' + this.description + '</dd>');
