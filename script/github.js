@@ -8,10 +8,11 @@ jQuery.githubUserGists = function(username, callback) {
   jQuery.getJSON("https://api.github.com/users/" + username + "/gists", callback);
 }
  
-jQuery.fn.loadRepositories = function(username) {
+jQuery.fn.loadRepositoriesGists = function(username, r, g) {
   this.html("<span>Querying GitHub for repositories...</span>");
  
-  var target = this; 
+  var target = this;
+  if(r==1){
   $.githubUser(username, function(data) {
     var repos = data;
     sortByNumberOfWatchers(repos);
@@ -23,7 +24,9 @@ jQuery.fn.loadRepositories = function(username) {
       list.append('<dd>' + this.description + '</dd>');
     });
   });
+  }
 
+  if(g==1)
   $.githubUserGists(username, function(data) {
     var gists = data;
     sortByNumberOfWatchers(gists);
@@ -35,10 +38,19 @@ jQuery.fn.loadRepositories = function(username) {
       list.append('<dd>' + this.description + '</dd>');
     });
   });
+}
  
   function sortByNumberOfWatchers(repos) {
     repos.sort(function(a,b) {
       return b.watchers - a.watchers;
     });
   }
+};
+
+jQuery.fn.loadRepositories = function (username) {
+  this.loadRepositoriesGists(username, 1, 0);
+};
+
+jQuery.fn.loadGists = function (username) {
+  this.loadRepositoriesGists(username, 0, 1);
 };
