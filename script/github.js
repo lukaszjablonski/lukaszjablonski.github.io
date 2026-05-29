@@ -26,7 +26,7 @@ jQuery.fn.loadRepositoriesGists = function(username, r, g) {
   });
   }
 
-  if(g==1)
+  if(g==1){
   $.githubUserGists(username, function(data) {
     var gists = data;
     sortByNumberOfWatchers(gists);
@@ -38,7 +38,7 @@ jQuery.fn.loadRepositoriesGists = function(username, r, g) {
       list.append('<dd>' + this.description + '</dd>');
     });
   });
-}
+  }
  
   function sortByNumberOfWatchers(repos) {
     repos.sort(function(a,b) {
