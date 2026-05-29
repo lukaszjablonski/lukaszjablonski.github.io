@@ -1,24 +1,23 @@
 jQuery.githubUser = function(username, callback) {
-  //jQuery.getJSON("http://github.com/api/v1/json/" + username + "?callback=?", callback);
   jQuery.getJSON("https://api.github.com/users/" + username + "/repos", callback);
 }
 
 jQuery.githubUserGists = function(username, callback) {
-  //jQuery.getJSON("http://github.com/api/v1/json/" + username + "?callback=?", callback);
   jQuery.getJSON("https://api.github.com/users/" + username + "/gists", callback);
 }
  
 jQuery.fn.loadRepositoriesGists = function(username, r, g) {
-  this.html("<span>Querying GitHub for repositories...</span>");
+  this.html("<span>Querying GitHub for entries...</span>");
  
   var target = this;
+  target.empty();
   if(r==1){
   $.githubUser(username, function(data) {
     var repos = data;
     sortByNumberOfWatchers(repos);
  
     var list = $('<dl/>');
-    target.empty().append(list);
+    target.append(list);
     $(repos).each(function() {
       list.append('<dt><a href="'+ this.svn_url +'">' + this.name + '</a></dt>');
       list.append('<dd>' + this.description + '</dd>');
