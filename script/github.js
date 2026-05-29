@@ -33,7 +33,7 @@ jQuery.fn.loadRepositoriesGists = function(username, r, g) {
     var list = $('<dl/>');
     target.append(list);
     $(gists).each(function() {
-      list.append('<dt><a href="'+ this.html_url +'">' + this.filename + '</a></dt>');
+      list.append('<dt><a href="'+ this.html_url +'">' + this.files[0].filename + '</a></dt>');
       list.append('<dd>' + this.description + '</dd>');
     });
   });
