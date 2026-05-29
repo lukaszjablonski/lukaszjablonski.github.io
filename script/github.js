@@ -12,6 +12,7 @@ jQuery.fn.loadRepositories = function(username) {
     sortByNumberOfWatchers(repos);
  
     var list = $('<dl/>');
+    //target.empty().append(list);
     target.empty().append(list);
     $(repos).each(function() {
       list.append('<dt><a href="'+ this.svn_url +'">' + this.name + '</a></dt>');
